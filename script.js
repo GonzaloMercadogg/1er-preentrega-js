@@ -1,50 +1,59 @@
 
-// enDolares() {
-//     this.precioDeLista = this.precioDeLista / 250
-// }
 
-// Se crea el objeto para luego realizar consultas del mismo
-
+// Se crea un objeto (agregado de su valor en dolares)
 class Producto {
-    constructor(marca, modelo, almacenamiento, precioDeLista){
-        this.marca = marca
+    constructor(id, marca, modelo, almacenamiento, precioDeLista){
+        this.id = id
+        this.marca = marca.toUpperCase()
         this.modelo = modelo
-        this.almacenamiento = almacenamiento
+        this.memoria = almacenamiento
         this.precioDeLista = precioDeLista
-        
-}  
-}
-
-// Lista de modelos disponibles (actualizando)
-
-const modelo1 = new Producto("Apple", "Iphone 13", "128 gb", 250000)
-const modelo2 = new Producto("LG", "Velvet 5G", "256 gb", 120000)
-const modelo3 = new Producto("Huawei", "P50", "64 gb", 100000)
-const modelo4 = new Producto("Samsung", "GalaxyS22", "128 gb", 150000)
-const modelo5 = new Producto("Motorola", "G Stylus", "256 gb", 170000)
-
-const productos = [modelo1, modelo2, modelo3, modelo4, modelo5]
-
-// Se crea un alert para interaccion con el usuario
-
-alert("hola! en la presente lista tenemos los moviles mas adquiridos del año 2022, puede consultar entre las marcas Apple, Samusng, LG, Motorola y Huawei")
-
-let respuesta, respuestaSw
-
-do {
-    respuesta = parseFloat(prompt("Porfavor ingrese un numero segun la caracteristica que desea consultar. 1 para marcas, 2 para modelos, 3 para almacenamiento y 4 para precio de lista"))
-    if ((respuesta != "1") && (respuesta !="2") && (respuesta != 3) && (respuesta != 4)) {
-    alert("Por favor ingrese un numero valido")
+    }  
+    enDolares() {
+        this.precioDeLista = this.precioDeLista / 250
     }
-}while(respuestaSw >=1 || respuestaSw <= 5 )
-
-
-switch(respuesta) {
-    case 1:
-        do{
-            respuestaSw = parseFloat(prompt("Por favor ingrese la marca del modelo a consultar"))
-        }while(respuestaSw <=1 || respuestaSw <= 5 )
-
-        const marcaElegida = productos.filter(producto => producto.marca == respuestaSw)
-        break
 }
+
+const productos = []
+let detalleDeProductos = function(id, mar, mod, alm, pre) {
+    productos.push(new Producto (id, mar, mod, alm, pre)) 
+}
+
+detalleDeProductos(1, "Samsung", "GalaxyS22", 128, 150000)
+detalleDeProductos(2, "Samsung", "GalaxyS21", 256, 147000)
+detalleDeProductos(3, "Samsung", "GalaxyS20", 512, 136000)
+detalleDeProductos(4, "Apple", "Iphone 13", 256, 255000)
+detalleDeProductos(5, "Apple", "Iphone 12", 128, 244000)
+detalleDeProductos(6, "Apple", "Iphone 11", 512, 205000)
+detalleDeProductos(7, "LG", "Velvet 5G", 256, 121000)
+detalleDeProductos(8, "LG", "Oled Z2", 128, 139000)
+detalleDeProductos(9, "LG", "Oled A2", 512, 157000)
+detalleDeProductos(10, "Huawei", "P50", 256, 104000)
+detalleDeProductos(11, "Huawei", "P40", 128, 92000)
+detalleDeProductos(12, "Huawei", "P30", 512, 80000)
+detalleDeProductos(13, "Motorola", "G Stylus", 512, 176000)
+detalleDeProductos(14, "Motorola", "Edge 30 PRO", 256, 168000)
+detalleDeProductos(15, "Motorola", "Edge 20 PRO", 128, 150000)
+
+//Se cambia el valor a dolares para mostrar en la consola 
+
+for(const dolares of productos) dolares.enDolares()
+console.log(productos)
+
+// Se desea consultar solo precio de los productos (en dolares previamente definido)
+
+console.log(productos.map(detalleDeProductos => detalleDeProductos.precioDeLista))
+
+// Se desea consultar los productos mayores o iguales a 600 dolares
+
+console.log(productos.filter(detalleDeProductos => detalleDeProductos.precioDeLista >= 600))
+
+// Se desea consultar los productos menores a 600 dolares
+
+console.log(productos.filter(detalleDeProductos => detalleDeProductos.precioDeLista < 600))
+
+// Se desea consultar por modelos marca "APPLE" disponible
+
+let buscarMarca = productos.filter(detalleDeProductos => detalleDeProductos = "Apple")
+console.log(buscarMarca)
+
