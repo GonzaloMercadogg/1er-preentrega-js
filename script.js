@@ -52,8 +52,5 @@ console.log(productos.filter(detalleDeProductos => detalleDeProductos.precioDeLi
 
 console.log(productos.filter(detalleDeProductos => detalleDeProductos.precioDeLista < 600))
 
-// Se desea consultar por modelos marca "APPLE" disponible
 
-let buscarMarca = productos.filter(detalleDeProductos => detalleDeProductos = "Apple")
-console.log(buscarMarca)
 
